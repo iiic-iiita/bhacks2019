@@ -13,7 +13,7 @@ The current system for a student to apply for a mess rebate is tedious and time 
 ## HOW TO RUN -
 
 1. INSTALL XAMPP
-2. RUN SQL CODE AFTER MAKING DATABASE NAME leaveapp
+2. RUN SQL CODE given in sql folder AFTER MAKING DATABASE NAME leaveapp
 3. COPY THE CODE TO htdocs/ folder inside xampp directory
 4. RUN xampp and switch 'ON' the PHP and SQL server.
 5. GO to localhost/searching for team name for login page (username - iec2017029, password - 123, email - iec2017029@iiita.ac.in, hostel - BH1,BH4 contains some data) 
@@ -22,5 +22,7 @@ The current system for a student to apply for a mess rebate is tedious and time 
 
 ## TEAM NAME - Searching for team name
 ### MEMBERS - Vishvajeet dhawale, Prateek
+
+#### IF any issue please feel free to ping me , i will be happy to help anytime ;)
 
 
