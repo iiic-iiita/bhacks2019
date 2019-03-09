@@ -76,7 +76,8 @@ function init_map() {
     // Basic options for a simple Google Map
     // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
 
-
+lat=25.432057;
+    	lon=81.770422;
 
   if(lat && lon){
 	    		var myLatLng = new google.maps.LatLng(lat, lon);
