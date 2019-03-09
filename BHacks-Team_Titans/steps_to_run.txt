@@ -1,0 +1,11 @@
+requirments:
+1. pip install opencv-python
+2. pip install face-recognition
+
+
+steps:
+1. run apache2 server
+2. copy html  folder to /var/www/
+3. open html folder and run server.py
+4. open track folder run pictures.py and webcam.py
+5. open the localhost for web interface.
