@@ -1,0 +1,307 @@
+{% extends 'education/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <div class="logo">
+            <a href="https://github.com/Ctrl-plus-C" class="simple-text logo-normal">
+                {{ name }}
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item  ">
+                    <a class="nav-link" href="{% url 'dashboard' %}">
+                        <i class="material-icons">dashboard</i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item active ">
+                    <a class="nav-link" href="{% url 'userprofile' %}">
+                        <i class="material-icons">person</i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'postquestion' %}">
+                        <i class="material-icons">content_paste</i>
+                        <p>Post a Question</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'yourlistedquestions' %}">
+                        <i class="material-icons">library_books</i>
+                        <p>Your Questions</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./notifications.html">
+                        <i class="material-icons">notifications</i>
+                        <p>Notifications</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'auth_logout' %}">
+                        <i class="material-icons">bubble_chart</i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <form class="navbar-form">
+                        <div class="input-group no-border">
+                            <input type="text" value="" class="form-control" placeholder="Search...">
+                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">Edit Profile</h4>
+                                <p class="card-category">Complete your profile</p>
+                            </div>
+                            <div class="card-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {{form.errors}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label id="username" class="bmd-label-floating">Username</label>
+                                                {% render_field form.username class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Email address (Use disposable ones)</label>
+                                                {% render_field form.email class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label id="first_name" class="bmd-label-floating">First Name</label>
+                                                {% render_field form.first_name class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label id="last_name" class="bmd-label-floating">Last Name</label>
+                                                {% render_field form.last_name class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label id="password1" class="bmd-label-floating">Password</label>
+                                                {% render_field form.password1 class="form-control" %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label id="password2" class="bmd-label-floating">Confirm Password</label>
+                                                {% render_field form.password2 class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="bmd-label-floating">Change your role</label>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="form-check-inline">
+                                                {% render_field form.available_mentor class="form-check-input" id="defaultCheck1" %}
+
+                                                As Mentor
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check-inline">
+                                                {% render_field form.available_mentee class="form-check-input" id="defaultCheck2" %}
+                                                As Mentee
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="bio" class="form-group">
+                                                <label>About Me</label>
+                                                {% render_field form.bio class="form-control" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="editprofile" type="submit" class="btn btn-primary pull-right">Edit your
+                                        profile</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img class="img" src="{% static 'images/a.jpg' %}" />
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-category text-gray">{{ bio }}</h6>
+                                <h4 class="card-title">{{ name }}</h4>
+                                <div id="userskills"></div>
+                            </div>
+                        </div>
+                        <div class="card card-profile">
+                            <div class="card-body">
+                                <h6 class="card-category text-gray">Enter Your Skill</h6>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input type="text" placeholder="Python, JS ..." id="user_skill" maxlength="30"
+                                            class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button id="skilladd" class="btn btn-primary pull-right">Add</button>
+                                    </div>
+                                </div>
+                                <div id="success_msg" style="display: none;">Skill added successfully</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="float-left">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/Ctrl-plus-C">
+                                Ctrl-plus-C
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright float-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, made with <i class="material-icons">favorite</i> by
+                    <a href="https://github.com/Ctrl-plus-C" target="_blank">Team Ctrl+C</a> for a better web.
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    // $("#editprofile").click(function(e){
+    //     e.preventDefault();
+    //     console.log("lolol")
+    //     var username = $("#username").val();
+    //     var firstname = $("#first_name").val(); 
+    //     var secondname = $("#last_name").val(); 
+    //     var password = $("#password1").val();
+    //     var secondpassword = $("#password2").val();
+    //     var bio = $("#bio").val();
+
+
+
+    // });
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8000/api/skills/" + {{request.user.pk}},
+            async: false,
+            success: function (data) {
+                skillStr = '';
+                data.map(function (skilldata) {
+                    skillStr += `<span class="badge badge-secondary">` + skilldata.name +
+                        `</span> &nbsp`;
+                });
+                $('#userskills').append(skillStr);
+                console.log(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, textStatus, errorThrown);
+            },
+        });
+
+        $('#skilladd').click(function (e) {
+            e.preventDefault();
+            let skillVal = $('#user_skill').val();
+            data = {};
+            data['user'] = {{request.user.pk}};
+            data['name'] = skillVal;
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRFToken": '{{csrf_token}}'
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/api/skills/",
+                data: data,
+                success: function (data) {
+                    $('#userskills').append(`<span class="badge badge-secondary">` + data.name +
+                        `</span> &nbsp`)
+                    $('#success_msg').show();
+                    $('#user_skill').val('');
+                    setTimeout(function () {
+                        $('#success_msg').hide();
+                    }, 4000);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest, textStatus, errorThrown);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
